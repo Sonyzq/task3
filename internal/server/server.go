@@ -17,11 +17,11 @@ type Server struct {
 func NewServer(logger *log.Logger) *Server {
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/", handlers.IndexHandler)
 	mux.HandleFunc("/upload", handlers.UploadHandler)
+	mux.HandleFunc("/", handlers.IndexHandler)
 
 	httpServer := &http.Server{
-		Addr:         "localhost:8080",
+		Addr:         ":8080",
 		Handler:      mux,
 		ErrorLog:     logger,
 		ReadTimeout:  5 * time.Second,
