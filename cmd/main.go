@@ -10,9 +10,6 @@ import (
 )
 
 func main() {
-	if _, err := os.Stat("index.html"); os.IsNotExist(err) {
-		log.Fatal("index.html нет в этой директории ")
-	}
 	logger := log.New(os.Stdout, "[SERVER] ", log.LstdFlags|log.Lshortfile)
 
 	srv := server.NewServer(logger)
