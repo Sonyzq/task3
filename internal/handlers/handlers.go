@@ -12,7 +12,11 @@ import (
 )
 
 func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "index.html")
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.Write([]byte(`<form action='/upload' method='post' enctype='multipart/form-data'>
+<input type='file' name='myFile'>
+<button>Send</button>
+</form>`))
 }
 
 func UploadHandler(w http.ResponseWriter, r *http.Request) {

@@ -14,6 +14,7 @@ func main() {
 
 	srv := server.NewServer(logger)
 
+	logger.Println("Запуск сервера на :8080")
 	if err := srv.HTTP.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 		logger.Fatal("Ошибка запуска сервера:", err)
 	}
