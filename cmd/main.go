@@ -3,8 +3,8 @@ package main
 
 import (
 	"log"
+	"net/http"
 	"os"
-	"time"
 
 	"github.com/Yandex-Practicum/go1fl-sprint6-final/internal/server"
 )
@@ -16,10 +16,8 @@ func main() {
 	logger := log.New(os.Stdout, "[SERVER] ", log.LstdFlags|log.Lshortfile)
 
 	srv := server.NewServer(logger)
-	err := srv.HTTP.ListenAndServe()
-	time.Sleep(500 * time.Millisecond)
 
-	if err != nil {
+	if err := srv.HTTP.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 		logger.Fatal("Ошибка запуска сервера:", err)
 	}
 }

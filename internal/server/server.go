@@ -21,7 +21,7 @@ func NewServer(logger *log.Logger) *Server {
 	mux.HandleFunc("/upload", handlers.UploadHandler)
 
 	httpServer := &http.Server{
-		Addr:         ":8080",
+		Addr:         "localhost:8080",
 		Handler:      mux,
 		ErrorLog:     logger,
 		ReadTimeout:  5 * time.Second,
