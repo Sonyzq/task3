@@ -1,1 +1,29 @@
+// service/service.go
 package service
+
+import (
+	"strings"
+
+	"github.com/Yandex-Practicum/go1fl-sprint6-final/pkg/morse"
+)
+
+func IsMorse(s string) bool {
+	for _, ch := range s {
+		if ch != '.' && ch != '-' && ch != ' ' {
+			return false
+		}
+	}
+	return true
+}
+
+func Conver(input string) (string, error) {
+	input = strings.TrimSpace(input)
+	if input == "" {
+		return "", nil
+	}
+
+	if IsMorse(input) {
+		return morse.ToText(input), nil
+	}
+	return morse.ToMorse(input), nil
+}
